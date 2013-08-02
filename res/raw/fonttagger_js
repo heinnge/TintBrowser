@@ -1,0 +1,151 @@
+if(!window.MYANMAR_SAR_FIXER_DID_RUN && document.body) {
+
+  (function() {
+    var regexMM = new RegExp("[\u1000-\u109f\uaa60-\uaa7f]+");
+    var regexUni = new RegExp("[ဃငဆဇဈဉညဋဌဍဎဏဒဓနဘရဝဟဠအ]်|ျ[က-အ]ါ|ျ[ါ-း]|[^\1031]စ်|\u103e|\u103f|\u1031[^\u1000-\u1021\u103b\u1040\u106a\u106b\u107e-\u1084\u108f\u1090]|\u1031$|\u1031[က-အ]\u1032|\u1025\u102f|\u103c\u103d[\u1000-\u1001]|ည်း|ျင်း|င်|န်း|ျာ");
+    var regexZG = new RegExp("\s\u1031| ေ[က-အ]်|[က-အ]း");
+    var timerID = undefined;
+    var mmFonts = new RegExp("Zawgyi-One|Masterpiece Uni Sans|Myanmar3|Yunghkio|Parabaik|WinUni Innwa|Win Uni Innwa|Padauk|MyMyanmar|Panglong|Ayar|TharLon|Myanmar Sangam");
+    var unicodeFonts = new RegExp("Masterpiece Uni Sans|Myanmar3|Yunghkio|Parabaik|WinUni Innwa|Win Uni Innwa|Padauk|MyMyanmar|Panglong|TharLon|Myanmar Sangam");
+    var useUnicodeFont = "Padauk-FontFace";
+
+    var facebook_wordbreaking_classes = ['tlActorText', 'messageBody', 'commentBody', 'uiAttachmentTitle', 'uiAttachmentDesc', 'ministoryInlineMessage', 'msg'];
+    var unicode_word_breaker = /[\u1000-\u102A\u1040-\u1049\u103F](?!\u103A)/g;
+    var classNameUnicode = "__ft_unicode";
+    var classNameZawgyi = "__ft_zawgyi";
+
+    var hasElementChildNodes = function(e) {
+        if(e.hasChildNodes()) {
+          if(e.childNodes.length == 1 && e.childNodes[0].nodeType == 3) {
+            return false;
+          }
+          return true;
+        }
+        return false;
+      }
+
+    var isWordbreakRemoveable = function(parent) {
+        var elements = parent.childNodes;
+        for(var i = 0; i < elements.length; i++) {
+          var el = elements[i];
+          if(el.nodeType == 3) {
+            continue;
+          }
+          if(hasElementChildNodes(el) || (el.tagName != 'SPAN' && el.tagName != 'WBR')) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+    var rewriteTextWithoutWordbreak = function(el) {
+        var text = el.textContent;
+        el.innerHTML = text;
+      }
+
+    var removeWordbreakTags = function(el) {
+        wbr = el.getElementsByTagName('wbr');
+        var i = 0;
+        while(wbr.length > 0) {
+          i++;
+          for(var j = 0; j < wbr.length; j++) {
+            w = wbr[j];
+            w.parentNode.removeChild(w);
+          }
+          wbr = el.getElementsByTagName('wbr');
+          if(i == 10) { // had tried to remove, still? just ignore it
+            break;
+          }
+        }
+
+        wbr = el.getElementsByTagName('span');
+        for(var j = 0; j < wbr.length; j++) {
+          w = wbr[j];
+          if(w.className && w.className == 'word_break') {
+            w.parentNode.removeChild(w);
+          }
+        }
+      }
+
+    var facebookTag = function() {
+        for(var i = 0; i < facebook_wordbreaking_classes.length; i++) {
+          var els = document.getElementsByClassName(facebook_wordbreaking_classes[i]);
+          for(var j = 0; j < els.length; j++) {
+            var thisNode = els[j];
+
+            if(thisNode.className && thisNode.className.indexOf('_tt_t_') !== -1) {
+              continue;
+            }
+
+            var text = thisNode.textContent;
+
+            if(!regexMM.test(text)) {
+              continue;
+            }
+
+            if(regexUni.test(text) && !regexZG.test(text)) {
+              thisNode.style.fontFamily = useUnicodeFont;
+            } else {
+              thisNode.style.fontFamily = "Zawgyi-One";
+            }
+            thisNode.className += ' _tt_t_';
+          }
+        }
+      }
+
+    var tagPage = function() {
+
+        facebookTag();
+
+        var el = document.getElementsByTagName('*');
+        for(var i = 0; i < el.length; i++) {
+          var childs = el[i].childNodes;
+          if(el[i].className && el[i].className.indexOf('_tt_t_') !== -1) {
+            continue;
+          }
+          for(var j = 0; j < childs.length; j++) {
+            var thisNode = childs[j];
+            if(thisNode.nodeType == 3) {
+
+              var prNode = thisNode.parentNode;
+              if(prNode.parentNode.className && prNode.parentNode.className.indexOf('_tt_t_') !== -1) {
+                continue;
+              }
+              if(prNode.className && prNode.className.indexOf('_tt_t_') !== -1) {
+                continue;
+              }
+
+              var text = thisNode.textContent;
+              var nextNode = thisNode;
+              while(nextNode.nextSibling) {
+                nextNode = nextNode.nextSibling;
+                text += nextNode.textContent;
+              }
+
+              if(text) {
+                if(regexUni.test(text) && !regexZG.test(text)) {
+                  prNode.style.fontFamily = useUnicodeFont;
+                } else {
+                  prNode.style.fontFamily = "Zawgyi-One-FontFace";
+                }
+                prNode.className += ' _tt_t_';
+              }
+            }
+          }
+        }
+      }
+
+    tagPage();
+
+    document.body.addEventListener("DOMNodeInserted", function() {
+      if(timerID) {
+        clearTimeout(timerID);
+      }
+
+      timerID = window.setTimeout(tagPage, 500);
+    }, false);
+  })();
+
+  window.MYANMAR_SAR_FIXER_DID_RUN = true;
+
+}

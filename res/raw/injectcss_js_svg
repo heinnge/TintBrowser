@@ -1,0 +1,13 @@
+if (!window.MYANMAR_SVG_DID_INJECT && document.body) {
+
+	var content = "@font-face {font-family: Zawgyi-One-FontFace; src: url(\"com.myopenware.zawgyi.svg\") format(\"svg\");}\n";
+	content += "input,textarea {font-family: Zawgyi-One-FontFace !important}\n";
+	content += "@font-face {font-family: Padauk-FontFace; src: url('com.myopenware.padauk.svg') format(\"svg\");}";
+
+	var css = document.createElement("style");
+	css.innerHTML = content;
+	document.getElementsByTagName("head")[0].appendChild(css);
+
+	window.MYANMAR_SVG_DID_INJECT = true;
+
+}
