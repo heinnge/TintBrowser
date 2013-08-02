@@ -25,7 +25,8 @@
             android:lines="1"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF" />
 
         <ImageView
             android:id="@+id/closetab"

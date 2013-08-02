@@ -17,12 +17,12 @@
 
 <resources>
 
-    <style name="ApplicationTheme" parent="@android:style/Theme.Holo">
+    <style name="ApplicationTheme" parent="@android:style/Theme.Holo.Light">
     </style>
-    
+
     <style name="ApplicationTheme.ListMainItem">
 		<item name="android:textSize">16sp</item>
-	</style>
+	 </style>
     
     <style name="RowSmallLight">
         <item name="android:textSize">14sp</item>

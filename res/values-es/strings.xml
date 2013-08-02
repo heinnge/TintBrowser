@@ -17,7 +17,7 @@
 
 <resources>
 
-    <string name="ApplicationName">Tint Browser</string>
+    <string name="ApplicationName">MyOpenBrowser</string>
     <string name="ApplicationDescription">Tint Browser es un navegador web de código abierto para Android.</string>
     
     <string name="AboutVersionText">Versión: %1$s (%2$s)</string>

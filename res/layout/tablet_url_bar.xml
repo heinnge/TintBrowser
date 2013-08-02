@@ -18,7 +18,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"    
-    android:background="@drawable/ab_solid_dark_holo"
+    android:background="@drawable/ab_solid_light_holo"
     android:orientation="vertical" >
     
     <LinearLayout
@@ -47,7 +47,7 @@
     	    android:focusable="true"
     	    android:paddingLeft="8dip"
     	    android:paddingRight="8dip"
-    	    android:src="@drawable/ic_back" />
+    	    android:src="@drawable/ic_back_dark" />
         
         <ImageView
     	    android:id="@+id/UrlBarGoForward"
@@ -59,7 +59,7 @@
     	    android:focusable="true"
     	    android:paddingLeft="8dip"
     	    android:paddingRight="8dip"
-    	    android:src="@drawable/ic_forward" />
+    	    android:src="@drawable/ic_forward_dark" />
         
         <ImageView
     	    android:id="@+id/UrlBarHome"
@@ -71,7 +71,7 @@
     	    android:focusable="true"
     	    android:paddingLeft="8dip"
     	    android:paddingRight="8dip"
-    	    android:src="@drawable/ic_home" />
+    	    android:src="@drawable/ic_home_dark" />
         
     </LinearLayout>
         
@@ -114,7 +114,7 @@
             android:focusable="true"
             android:paddingLeft="8dip"
             android:paddingRight="8dip"
-            android:src="@drawable/ic_go" />
+            android:src="@drawable/ic_go_dark" />
         
         <ImageView
     	    android:id="@+id/UrlBarBookmarks"
@@ -126,7 +126,7 @@
     	    android:focusable="true"
     	    android:paddingLeft="8dip"
     	    android:paddingRight="8dip"
-    	    android:src="@drawable/ic_bookmarks" />
+    	    android:src="@drawable/ic_bookmarks_dark" />
     	
 	</LinearLayout>
 

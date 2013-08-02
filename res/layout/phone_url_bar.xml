@@ -30,7 +30,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="8dip"
         android:paddingRight="8dip"
-        android:src="@drawable/ic_incognito_holo_dark"
+        android:src="@drawable/ic_incognito_holo_light"
         android:visibility="gone" />
 
     <RelativeLayout

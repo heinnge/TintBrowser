@@ -43,7 +43,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/ContentDescriptionBookmarksFoldersBack"
                 android:focusable="true"
-                android:src="@drawable/ic_back_hierarchy" />
+                android:src="@drawable/ic_back_hierarchy_dark" />
 
             <android.app.FragmentBreadCrumbs
                 android:id="@+id/BookmarksBreadCrumb"

@@ -15,8 +15,10 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#131313" >
 
     <RelativeLayout
         android:id="@+id/panel"
@@ -126,7 +128,7 @@
                 android:src="@android:drawable/ic_menu_add" />
         </LinearLayout>
 
-        <org.tint.ui.views.TabsScroller
+        <com.myopenware.ui.views.TabsScroller
             android:id="@+id/tabs_scroller"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -140,6 +142,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:gravity="bottom"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -149,12 +152,12 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_margin="0dip"
-            android:background="@drawable/ab_solid_dark_holo"
+            android:background="@drawable/ab_solid_light_holo"
             android:orientation="horizontal"
             android:padding="0dip"
             android:scaleType="fitXY" >
 
-            <org.tint.ui.components.BadgedImageView
+            <com.myopenware.ui.components.BadgedImageView
                 android:id="@+id/FaviconView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -166,21 +169,13 @@
                 android:paddingTop="5dip"
                 android:src="@drawable/ic_tabs" />
 
-            <org.tint.ui.views.PhoneUrlBar
+            <com.myopenware.ui.views.PhoneUrlBar
                 android:id="@+id/UrlBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/FaviconView" />
         </RelativeLayout>
-
-        <FrameLayout
-            android:id="@+id/WebViewContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/TopBar"
-            android:background="#dcdcdc"
-            android:orientation="vertical" />
 
         <ImageView
             android:id="@+id/ExitFullScreen"
@@ -204,6 +199,34 @@
             android:layout_marginRight="0dip"
             android:layout_marginTop="-8dip"
             android:indeterminate="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/TopBar"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:id="@+id/WebViewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_gravity="fill_vertical"
+                android:layout_weight="0.41"
+                android:background="#dcdcdc"
+                android:orientation="vertical" >
+            </FrameLayout>
+
+            <com.google.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="a151f80958dd138"
+                ads:loadAdOnCreate="true"
+                ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID" >
+            </com.google.ads.AdView>
+        </LinearLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>

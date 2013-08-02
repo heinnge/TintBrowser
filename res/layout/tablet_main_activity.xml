@@ -16,19 +16,39 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <FrameLayout
-        android:id="@+id/WebViewContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/UrlBar"
-        android:background="#dcdcdc"
-        android:orientation="vertical" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/UrlBar"
+            android:orientation="vertical" >
 
-    <org.tint.ui.views.TabletUrlBar
+            <FrameLayout
+                android:id="@+id/WebViewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_gravity="fill_vertical"
+                android:layout_weight="0.41"
+                android:background="#dcdcdc"
+                android:orientation="vertical" >
+            </FrameLayout>
+
+            <com.google.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ads:adSize="IAB_BANNER"
+                ads:adUnitId="a151f80958dd138"
+                ads:loadAdOnCreate="true"
+                ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID" >
+            </com.google.ads.AdView>
+        </LinearLayout>
+
+    <com.myopenware.ui.views.TabletUrlBar
         android:id="@+id/UrlBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

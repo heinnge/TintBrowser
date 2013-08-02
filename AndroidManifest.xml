@@ -16,35 +16,36 @@
  -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.tint"
+    package="com.myopenware"
     android:installLocation="auto"    
-    android:versionCode="9"
-    android:versionName="1.7">
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="17" />
     
-    <permission android:name="org.tint.permissions.bookmarksprovider.READ"
+    <permission android:name="com.myopenware.permissions.bookmarksprovider.READ"
         android:label="@string/PermissionReadBookmarksLabel"
         android:description="@string/PermissionReadBookmarksDescription"
         android:permissionGroup="android.permission-group.PERSONAL_INFO"
         android:protectionLevel="dangerous" />
     
-    <permission android:name="org.tint.permissions.bookmarksprovider.WRITE"
+    <permission android:name="com.myopenware.permissions.bookmarksprovider.WRITE"
         android:label="@string/PermissionWriteBookmarksLabel"
         android:description="@string/PermissionWriteBookmarksDescription"
         android:permissionGroup="android.permission-group.PERSONAL_INFO"
         android:protectionLevel="dangerous" />
     
-    <permission android:name="org.tint.permissions.services.ADDONS"
+    <permission android:name="com.myopenware.permissions.services.ADDONS"
         android:label="@string/PermissionBindAddonServiceLabel"
         android:description="@string/PermissionBindAddonServiceDescription"
         android:protectionLevel="dangerous" />
     
-    <uses-permission android:name="org.tint.permissions.services.ADDONS" />
+    <uses-permission android:name="com.myopenware.permissions.services.ADDONS" />
     
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -52,10 +53,13 @@
         android:theme="@style/ApplicationTheme"
         android:allowBackup="true" 
         android:hardwareAccelerated="true">
+        
+        <activity android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 
         <activity
             android:label="@string/ApplicationName"
-            android:name=".ui.activities.TintBrowserActivity"
+            android:name="com.myopenware.ui.activities.TintBrowserActivity"
             android:launchMode="singleTask"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
             <intent-filter >
@@ -71,20 +75,20 @@
 			</intent-filter>
         </activity>
 
-        <activity android:name=".ui.preferences.PreferencesActivity" android:label="@string/PreferencesActivityTitle"></activity>
-        <activity android:name=".ui.activities.BookmarksActivity"></activity>
-        <activity android:name=".ui.activities.EditBookmarkActivity" android:theme="@android:style/Theme.Holo.DialogWhenLarge"></activity>
+        <activity android:name="com.myopenware.ui.preferences.PreferencesActivity" android:label="@string/PreferencesActivityTitle"></activity>
+        <activity android:name="com.myopenware.ui.activities.BookmarksActivity"></activity>
+        <activity android:name="com.myopenware.ui.activities.EditBookmarkActivity" android:theme="@android:style/Theme.Holo.DialogWhenLarge"></activity>
         
         <provider
-            android:name=".providers.BookmarksProvider"
-            android:authorities="org.tint.providers.bookmarksprovider"
+            android:name="com.myopenware.providers.BookmarksProvider"
+            android:authorities="com.myopenware.providers.bookmarksprovider"
             android:exported="true"
-            android:readPermission="org.tint.permissions.bookmarksprovider.READ"
-            android:writePermission="org.tint.permissions.bookmarksprovider.WRITE" />
+            android:readPermission="com.myopenware.permissions.bookmarksprovider.READ"
+            android:writePermission="com.myopenware.permissions.bookmarksprovider.WRITE" />
         
         <provider
-            android:name=".providers.SslExceptionsProvider"
-            android:authorities="org.tint.providers.sslexceptionsprovider"
+            android:name="com.myopenware.providers.SslExceptionsProvider"
+            android:authorities="com.myopenware.providers.sslexceptionsprovider"
             android:exported="false" />
         
     </application>
