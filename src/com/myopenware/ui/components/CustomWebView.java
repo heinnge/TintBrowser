@@ -149,7 +149,10 @@ public class CustomWebView extends WebView implements DownloadListener {
 		
 		mUIManager.onClientPageFinished(this, url);
 		
-		injectJSTimer.cancel();
+		if (injectJSTimer != null) {
+			injectJSTimer.cancel();
+			injectJSTimer = null;
+		}
 		injectJS();
 	}
 	
